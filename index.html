@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Web Interactiva</title>
+<title>Bienvenido</title>
 
 <style>
 body {
@@ -14,11 +14,22 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-}.container {
+}
+
+#welcome {
+  text-align: center;
   background: white;
   padding: 40px;
   border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+#content {
+  display: none;
   text-align: center;
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
@@ -30,29 +41,39 @@ button {
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
-}#contador {
-  font-size: 24px;
-  margin: 15px 0;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-  <h1 id="titulo">Bienvenido</h1>
-  <p>Esta es una web interactiva 🚀</p>
-  <div id="contador">0</div>
-  <button onclick="sumar()">Sumar +1</button>
+<div id="welcome">
+  <h1>¡Bienvenido!</h1>
+  <p>Esta es mi web interactiva 🚀</p>
+  <button onclick="entrar()">Entrar</button>
 </div>
-<script>
-let contador = 0;
 
-function sumar() {
-  contador++;
-  document.getElementById("contador").textContent = contador;
+<div id="content">
+  <h1>Contenido</h1>
+  <p>Aquí va todo lo importante.</p>
+  <button onclick="volver()">Volver</button>
+</div>
+
+<script>
+function entrar() {
+  document.getElementById("welcome").style.display = "none";
+  document.getElementById("content").style.display = "block";
+}
+
+function volver() {
+  document.getElementById("content").style.display = "none";
+  document.getElementById("welcome").style.display = "block";
 }
 </script>
 
 </body>
 </html>
+
+
+
+
