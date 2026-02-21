@@ -1,20 +1,22 @@
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Web Pro</title>
+<title>Mi Web Interactiva</title>
 
 <style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   display: flex;
-justify-content: center;
+  justify-content: center;
   align-items: center;
   height: 100vh;
   background: linear-gradient(135deg, #4e73df, #1cc88a);
-  transition: 0.3s;
 }
 
 .container {
@@ -23,11 +25,15 @@ justify-content: center;
   border-radius: 15px;
   text-align: center;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  width: 90%;
-  max-width: 400px;
 }
+
 h1 {
   margin-bottom: 10px;
+}
+
+#contador {
+  font-size: 24px;
+  margin: 15px 0;
 }
 
 button {
@@ -38,20 +44,6 @@ button {
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #2e59d9;
-}
-
-.dark {
-  background: #1e1e1e;
-}
-
-.dark .container {
-  background: #2b2b2b;
-  color: white;
 }
 </style>
 </head>
@@ -59,16 +51,21 @@ button:hover {
 <body>
 
 <div class="container">
-  <h1 id="titulo">Bienvenido a mi web</h1>
-  <p>He creado mi primera página profesional 🚀</p>
-  <button onclick="cambiarModo()">Modo oscuro</button>
+  <h1>¡Interacción!</h1>
+  <p>Haz clic para sumar</p>
+  <div id="contador">0</div>
+  <button onclick="sumar()">Sumar +1</button>
 </div>
+
 <script>
-function cambiarModo() {
-  document.body.classList.toggle("dark");
+let contador = 0;
+
+function sumar() {
+  contador++;
+  document.getElementById("contador").textContent = contador;
 }
 </script>
 
-</body>
+<body>
 </html>
 
