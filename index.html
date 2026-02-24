@@ -1,75 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bienvenido</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Primera App</title>
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #4e73df, #1cc88a);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+      text-align: center;
+    }
 
-#welcome {
-  text-align: center;
-  background: white;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
+    .caja {
+      background: rgba(0,0,0,0.3);
+      padding: 30px;
+      border-radius: 15px;
+    }
 
-#content {
-  display: none;
-  text-align: center;
-  background: white;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-
-button {
-  padding: 10px 20px;
-  border: none;
-  background: #4e73df;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-}
-</style>
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
 </head>
-
 <body>
 
-<div id="welcome">
-  <h1>¡Bienvenido!</h1>
-  <p>Esta es mi web interactiva 🚀</p>
-  <button onclick="entrar()">Entrar</button>
-</div>
+  <div class="caja">
+    <h1>Bienvenido</h1>
+    <p>Esta es mi app en construcción 🚀</p>
+    <button onclick="cambiarFondo()">Cambiar color</button>
+  </div>
 
-<div id="content">
-  <h1>Contenido</h1>
-  <p>Aquí va todo lo importante.</p>
-  <button onclick="volver()">Volver</button>
-</div>
+  <script>
+    function cambiarFondo() {
+      const colores = [
+        "linear-gradient(135deg, #ff512f, #dd2476)",
+        "linear-gradient(135deg, #11998e, #38ef7d)",
+        "linear-gradient(135deg, #8360c3, #2ebf91)"
+      ];
 
-<script>
-function entrar() {
-  document.getElementById("welcome").style.display = "none";
-  document.getElementById("content").style.display = "block";
-}
-
-function volver() {
-  document.getElementById("content").style.display = "none";
-  document.getElementById("welcome").style.display = "block";
-}
-</script>
+      const random = Math.floor(Math.random() * colores.length);
+      document.body.style.background = colores[random];
+    }
+  </script>
 
 </body>
 </html>
