@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <title>Mi App Social</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi App Pro</title>
 
   <style>
     body {
@@ -15,83 +15,104 @@
       align-items: center;
       height: 100vh;
       color: white;
-      text-align: center;
-      transition: background 0.5s ease;
     }
 
-    .caja {
+    .container {
       background: rgba(255,255,255,0.08);
       padding: 40px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      animation: aparecer 1s ease;
+      width: 300px;
+      text-align: center;
     }
 
-    h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 18px;
-      opacity: 0.8;
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
     }
 
     button {
-      margin-top: 25px;
-      padding: 12px 25px;
+      width: 100%;
+      padding: 10px;
       border: none;
-      border-radius: 30px;
+      border-radius: 20px;
+      margin-top: 10px;
       cursor: pointer;
-      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .primary {
       background: white;
       color: #141e30;
-      font-weight: bold;
-      transition: transform 0.2s ease, background 0.3s ease;
     }
 
-    button:hover {
-      transform: scale(1.1);
-      background: #f1f1f1;
+    .secondary {
+      background: transparent;
+      color: white;
+      border: 1px solid white;
     }
 
-    @keyframes aparecer {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    #app {
+      display: none;
     }
   </style>
 </head>
-
 <body>
 
-  <div class="caja">
-    <h1>Bienvenido a mi App 🚀</h1>
-    <p>BIENVENIDO A MI APP WEB
-    😎</p>
-    <button onclick="cambiarFondo()">Cambiar fondo</button>
+  <div class="container" id="auth">
+    <h2>Mi App 🚀</h2>
+    <input type="text" id="username" placeholder="Usuario">
+    <input type="password" id="password" placeholder="Contraseña">
+    <button class="primary" onclick="register()">Crear cuenta</button>
+    <button class="secondary" onclick="login()">Iniciar sesión</button>
+    <p id="mensaje"></p>
+  </div>
+
+  <div class="container" id="app">
+    <h2 id="saludo"></h2>
+    <p>Ya estás dentro de tu app 😎</p>
+    <button class="primary" onclick="logout()">Cerrar sesión</button>
   </div>
 
   <script>
-    function cambiarFondo() {
-      const colores = [
-        "linear-gradient(135deg, #ff416c, #ff4b2b)",
-        "linear-gradient(135deg, #00c6ff, #0072ff)",
-        "linear-gradient(135deg, #11998e, #38ef7d)",
-        "linear-gradient(135deg, #8e2de2, #4a00e0)"
-      ];
+    function register() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
 
-      const random = Math.floor(Math.random() * colores.length);
-      document.body.style.background = colores[random];
+      if (!user || !pass) {
+        document.getElementById("mensaje").innerText = "Completa todo";
+        return;
+      }
+
+      localStorage.setItem("user", user);
+      localStorage.setItem("pass", pass);
+      document.getElementById("mensaje").innerText = "Cuenta creada ✔";
+    }
+
+    function login() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+
+      const savedUser = localStorage.getItem("user");
+      const savedPass = localStorage.getItem("pass");
+
+      if (user === savedUser && pass === savedPass) {
+        document.getElementById("auth").style.display = "none";
+        document.getElementById("app").style.display = "block";
+        document.getElementById("saludo").innerText = "Bienvenido " + user + " 🔥";
+      } else {
+        document.getElementById("mensaje").innerText = "Datos incorrectos";
+      }
+    }
+
+    function logout() {
+      document.getElementById("auth").style.display = "block";
+      document.getElementById("app").style.display = "none";
     }
   </script>
 
 </body>
 </html>
-     
