@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EDITS CAPS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
@@ -67,28 +67,27 @@
 </head>
 <body>
 
-  <!-- Pantalla de bienvenida -->
+  <!-- Bienvenida -->
   <div class="container" id="welcome">
     <h1>Bienvenido a</h1>
     <h2>EDITS CAPS 🚀</h2>
     <button class="primary" onclick="showAuth()">Entrar</button>
   </div>
 
-  <!-- Login / Registro -->
+  <!-- Registro / Login -->
   <div class="container" id="auth" style="display:none;">
     <h2>Cuenta</h2>
     <input type="text" id="username" placeholder="Usuario">
     <input type="password" id="password" placeholder="Contraseña">
-    <button class="primary" onclick="register()">Crear cuenta</button>
-    <button class="secondary" onclick="login()">Iniciar sesión</button>
+    <button class="primary" onclick="saveAndEnter()">Crear cuenta / Entrar</button>
     <p id="mensaje"></p>
   </div>
 
-  <!-- Pantalla de app -->
+  <!-- App -->
   <div class="container" id="app" style="display:none;">
     <h2 id="saludo"></h2>
     <p>Bienvenido a EDITS CAPS</p>
-    <p>Editor de video en construcción ✂️🎬</p>
+    <p>Editor en construcción ✂️🎬</p>
     <button class="secondary" onclick="logout()">Cerrar sesión</button>
   </div>
 
@@ -98,7 +97,7 @@
       document.getElementById("auth").style.display = "block";
     }
 
-    function register() {
+    function saveAndEnter() {
       const user = document.getElementById("username").value;
       const pass = document.getElementById("password").value;
 
@@ -109,23 +108,10 @@
 
       localStorage.setItem("user", user);
       localStorage.setItem("pass", pass);
-      document.getElementById("mensaje").innerText = "Cuenta creada ✔";
-    }
 
-    function login() {
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
-
-      const savedUser = localStorage.getItem("user");
-      const savedPass = localStorage.getItem("pass");
-
-      if (user === savedUser && pass === savedPass) {
-        document.getElementById("auth").style.display = "none";
-        document.getElementById("app").style.display = "block";
-        document.getElementById("saludo").innerText = "Bienvenido " + user + " 🔥";
-      } else {
-        document.getElementById("mensaje").innerText = "Datos incorrectos";
-      }
+      document.getElementById("auth").style.display = "none";
+      document.getElementById("app").style.display = "block";
+      document.getElementById("saludo").innerText = "Bienvenido " + user + " 🔥";
     }
 
     function logout() {
