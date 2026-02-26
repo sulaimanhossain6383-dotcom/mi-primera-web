@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mi App Social</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EDITS CAPS</title>
 
   <style>
     body {
@@ -22,7 +22,7 @@
       padding: 40px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
-      width: 300px;
+      width: 320px;
       text-align: center;
     }
 
@@ -57,13 +57,26 @@
 
     #app {
       display: none;
+      text-align: center;
+    }
+
+    #welcome {
+      display: block;
     }
   </style>
 </head>
 <body>
 
-  <div class="container" id="auth">
-    <h2>Mi App 🚀</h2>
+  <!-- Pantalla de bienvenida -->
+  <div class="container" id="welcome">
+    <h1>Bienvenido a</h1>
+    <h2>EDITS CAPS 🚀</h2>
+    <button class="primary" onclick="showAuth()">Entrar</button>
+  </div>
+
+  <!-- Login / Registro -->
+  <div class="container" id="auth" style="display:none;">
+    <h2>Cuenta</h2>
     <input type="text" id="username" placeholder="Usuario">
     <input type="password" id="password" placeholder="Contraseña">
     <button class="primary" onclick="register()">Crear cuenta</button>
@@ -71,13 +84,20 @@
     <p id="mensaje"></p>
   </div>
 
-  <div class="container" id="app">
+  <!-- Pantalla de app -->
+  <div class="container" id="app" style="display:none;">
     <h2 id="saludo"></h2>
-    <p>Ya estás dentro de tu app 😎</p>
-    <button class="primary" onclick="logout()">Cerrar sesión</button>
+    <p>Bienvenido a EDITS CAPS</p>
+    <p>Editor de video en construcción ✂️🎬</p>
+    <button class="secondary" onclick="logout()">Cerrar sesión</button>
   </div>
 
   <script>
+    function showAuth() {
+      document.getElementById("welcome").style.display = "none";
+      document.getElementById("auth").style.display = "block";
+    }
+
     function register() {
       const user = document.getElementById("username").value;
       const pass = document.getElementById("password").value;
@@ -109,10 +129,11 @@
     }
 
     function logout() {
-      document.getElementById("auth").style.display = "block";
       document.getElementById("app").style.display = "none";
+      document.getElementById("welcome").style.display = "block";
     }
   </script>
 
 </body>
 </html>
+     
