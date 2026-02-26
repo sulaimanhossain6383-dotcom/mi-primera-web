@@ -3,51 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Primera App</title>
+  <title>Mi App Pro</title>
 
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      background: linear-gradient(135deg, #141e30, #243b55);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       color: white;
       text-align: center;
+      transition: background 0.5s ease;
     }
 
     .caja {
-      background: rgba(0,0,0,0.3);
-      padding: 30px;
-      border-radius: 15px;
+      background: rgba(255,255,255,0.08);
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      animation: aparecer 1s ease;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      opacity: 0.8;
     }
 
     button {
-      margin-top: 20px;
-      padding: 10px 20px;
+      margin-top: 25px;
+      padding: 12px 25px;
       border: none;
-      border-radius: 8px;
+      border-radius: 30px;
       cursor: pointer;
       font-size: 16px;
+      background: white;
+      color: #141e30;
+      font-weight: bold;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background: #f1f1f1;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
+
 <body>
 
   <div class="caja">
-    <h1>Bienvenido</h1>
-    <p>Esta es mi app en construcción 🚀</p>
-    <button onclick="cambiarFondo()">Cambiar color</button>
+    <h1>Bienvenido a mi App 🚀</h1>
+    <p>Ahora se ve mucho más profesional 😎</p>
+    <button onclick="cambiarFondo()">Cambiar fondo</button>
   </div>
 
   <script>
     function cambiarFondo() {
       const colores = [
-        "linear-gradient(135deg, #ff512f, #dd2476)",
+        "linear-gradient(135deg, #ff416c, #ff4b2b)",
+        "linear-gradient(135deg, #00c6ff, #0072ff)",
         "linear-gradient(135deg, #11998e, #38ef7d)",
-        "linear-gradient(135deg, #8360c3, #2ebf91)"
+        "linear-gradient(135deg, #8e2de2, #4a00e0)"
       ];
 
       const random = Math.floor(Math.random() * colores.length);
@@ -57,3 +93,4 @@
 
 </body>
 </html>
+     
