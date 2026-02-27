@@ -124,7 +124,29 @@ Cerrar sesión
       document.getElementById("welcome").style.display = "block";
     }
   </script>
+const videoInput = document.getElementById("videoInput");
+const videoPlayer = document.getElementById("videoPlayer");
 
+videoInput.addEventListener("change", function () {
+  const file = this.files[0];
+  if (file) {
+    const url = URL.createObjectURL(file);
+    videoPlayer.src = url;
+  }
+});
+
+function recortarVideo() {
+  const start = document.getElementById("startTime").value;
+  const end = document.getElementById("endTime").value;
+
+  if (start >= end) {
+    document.getElementById("resultado").innerText = "El inicio debe ser menor que el fin";
+    return;
+  }
+
+  document.getElementById("resultado").innerText =
+    "Video recortado desde " + start + "s hasta " + end + "s (simulación)";
+}
 </body>
 </html>
      
