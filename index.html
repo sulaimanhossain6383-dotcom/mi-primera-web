@@ -8,7 +8,7 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial;
       background: linear-gradient(135deg, #141e30, #243b55);
       display: flex;
       justify-content: center;
@@ -17,136 +17,114 @@
       color: white;
     }
 
-    .container {
+    .box {
       background: rgba(255,255,255,0.08);
       padding: 40px;
       border-radius: 20px;
-      backdrop-filter: blur(10px);
-      width: 320px;
       text-align: center;
-    }
-
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: none;
+      width: 300px;
     }
 
     button {
-      width: 100%;
       padding: 10px;
-      border: none;
+      margin-top: 15px;
       border-radius: 20px;
-      margin-top: 10px;
+      border: none;
+      width: 100%;
       cursor: pointer;
       font-weight: bold;
     }
 
-    .primary {
+    .btn {
       background: white;
-      color: #141e30;
+      color: black;
     }
 
-    .secondary {
-      background: transparent;
-      color: white;
-      border: 1px solid white;
-    }
-
-    #app {
+    #auth, #app {
       display: none;
-      text-align: center;
-    }
-
-    #welcome {
-      display: block;
     }
   </style>
 </head>
+
 <body>
 
-  <!-- Bienvenida -->
-  <div class="container" id="welcome">
-    <h1>Bienvenido a</h1>
-    <h2>EDITS CAPS 🚀</h2>
-    <button class="primary" onclick="showAuth()">Entrar</button>
+  <!-- BIENVENIDA -->
+  <div class="box" id="welcome">
+    <h1>EDITS CAPS 🚀</h1>
+    <button class="btn" onclick="irLogin()">Entrar</button>
   </div>
 
-  <!-- Registro / Login -->
-  <div class="container" id="auth" style="display:none;">
+  <!-- LOGIN -->
+  <div class="box" id="auth">
     <h2>Cuenta</h2>
-    <input type="text" id="username" placeholder="Usuario">
-    <input type="password" id="password" placeholder="Contraseña">
-    <button class="primary" onclick="saveAndEnter()">Crear cuenta / Entrar</button>
-    <p id="mensaje"></p>
+    <input type="text" id="user" placeholder="Usuario"><br><br>
+    <input type="password" id="pass" placeholder="Contraseña"><br>
+    <button class="btn" onclick="entrar()">Entrar</button>
+    <p id="msg"></p>
   </div>
 
-  <!-- App -->
-  <div class="container" id="app" style="display:none;">
+  <!-- APP -->
+  <div class="box" id="app">
     <h2 id="saludo"></h2>
-    <p>Bienvenido a EDITS CAPS</p>
-    <Bienvenido VZVD 🔥
-Bienvenido a EDITS CAPS
 
-Editor en construcción ✂️🎬
+    <input type="file" id="videoInput" accept="video/*"><br><br>
+    <video id="video" width="250" controls></video><br><br>
 
-Cerrar sesión
-    <button class="secondary" onclick="logout()">Cerrar sesión</button>
+    <label>Inicio:</label>
+    <input type="number" id="inicio" value="0"><br>
+
+    <label>Fin:</label>
+    <input type="number" id="fin" value="5"><br><br>
+
+    <button class="btn" onclick="recortar()">Recortar</button>
+
+    <p id="resultado"></p>
+
+    <button onclick="logout()">Salir</button>
   </div>
 
   <script>
-    function showAuth() {
+    function irLogin() {
       document.getElementById("welcome").style.display = "none";
       document.getElementById("auth").style.display = "block";
     }
 
-    function saveAndEnter() {
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
+    function entrar() {
+      const user = document.getElementById("user").value;
 
-      if (!user || !pass) {
-        document.getElementById("mensaje").innerText = "Completa todo";
+      if (!user) {
+        document.getElementById("msg").innerText = "Escribe usuario";
         return;
       }
 
-      localStorage.setItem("user", user);
-      localStorage.setItem("pass", pass);
-
       document.getElementById("auth").style.display = "none";
       document.getElementById("app").style.display = "block";
-      document.getElementById("saludo").innerText = "Bienvenido " + user + " 🔥";
+      document.getElementById("saludo").innerText = "Bienvenido " + user;
     }
 
     function logout() {
       document.getElementById("app").style.display = "none";
       document.getElementById("welcome").style.display = "block";
     }
+
+    const input = document.getElementById("videoInput");
+    const video = document.getElementById("video");
+
+    input.addEventListener("change", function() {
+      const file = this.files[0];
+      if (file) {
+        video.src = URL.createObjectURL(file);
+      }
+    });
+
+    function recortar() {
+      const i = document.getElementById("inicio").value;
+      const f = document.getElementById("fin").value;
+
+      document.getElementById("resultado").innerText =
+        "Recorte de " + i + "s a " + f + "s (simulado)";
+    }
   </script>
-const videoInput = document.getElementById("videoInput");
-const videoPlayer = document.getElementById("videoPlayer");
 
-videoInput.addEventListener("change", function () {
-  const file = this.files[0];
-  if (file) {
-    const url = URL.createObjectURL(file);
-    videoPlayer.src = url;
-  }
-});
-
-function recortarVideo() {
-  const start = document.getElementById("startTime").value;
-  const end = document.getElementById("endTime").value;
-
-  if (start >= end) {
-    document.getElementById("resultado").innerText = "El inicio debe ser menor que el fin";
-    return;
-  }
-
-  document.getElementById("resultado").innerText =
-    "Video recortado desde " + start + "s hasta " + end + "s (simulación)";
-}
 </body>
-</html>
-     
+</html>     
